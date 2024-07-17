@@ -7,7 +7,7 @@ const App = () => {
     <div>
       <h1>Welcome to my React App!</h1>
       <p>This is a simple React application.</p>
-      {div1.divSet("테스트", "blue", "red")}
+      {div1.divSet()}
     </div>
   );
 };
