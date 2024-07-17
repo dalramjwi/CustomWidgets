@@ -11,9 +11,7 @@ class DivClass {
   }
   divSet(text: s, textColor: s, backColor: s) {
     return {
-      text: this.text,
-      color: this.textColor,
-      backgroundColor: this.backColor,
+      //div를 만드는 부분, innerText: text, color: textColor, backCgroundColor: backColor로 지정한다.
     };
   }
 }
