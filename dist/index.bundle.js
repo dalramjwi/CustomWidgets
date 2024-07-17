@@ -14,9 +14,19 @@
 /*!*********************!*\
   !*** ./src/app.tsx ***!
   \*********************/
+/***/ (function(__unused_webpack_module, exports, __webpack_require__) {
+
+eval("\n\nvar __importDefault = this && this.__importDefault || function (mod) {\n  return mod && mod.__esModule ? mod : {\n    \"default\": mod\n  };\n};\nObject.defineProperty(exports, \"__esModule\", ({\n  value: true\n}));\nvar jsx_runtime_1 = __webpack_require__(/*! react/jsx-runtime */ \"./node_modules/react/jsx-runtime.js\");\nvar divClass_1 = __importDefault(__webpack_require__(/*! ./divClass */ \"./src/divClass.tsx\"));\nvar App = function App() {\n  var div1 = new divClass_1[\"default\"](\"Welcome!\", \"white\", \"blue\");\n  return (0, jsx_runtime_1.jsxs)(\"div\", {\n    children: [(0, jsx_runtime_1.jsx)(\"h1\", {\n      children: \"Welcome to my React App!\"\n    }), (0, jsx_runtime_1.jsx)(\"p\", {\n      children: \"This is a simple React application.\"\n    }), div1.divSet(\"테스트\", \"blue\", \"red\")]\n  });\n};\nexports[\"default\"] = App;\n\n//# sourceURL=webpack://reactprac/./src/app.tsx?");
+
+/***/ }),
+
+/***/ "./src/divClass.tsx":
+/*!**************************!*\
+  !*** ./src/divClass.tsx ***!
+  \**************************/
 /***/ ((__unused_webpack_module, exports, __webpack_require__) => {
 
-eval("\n\nObject.defineProperty(exports, \"__esModule\", ({\n  value: true\n}));\nvar jsx_runtime_1 = __webpack_require__(/*! react/jsx-runtime */ \"./node_modules/react/jsx-runtime.js\");\nvar App = function App() {\n  return (0, jsx_runtime_1.jsxs)(\"div\", {\n    children: [(0, jsx_runtime_1.jsx)(\"h1\", {\n      children: \"Welcome to my React App!\"\n    }), (0, jsx_runtime_1.jsx)(\"p\", {\n      children: \"This is a simple React application.\"\n    })]\n  });\n};\nexports[\"default\"] = App;\n\n//# sourceURL=webpack://reactprac/./src/app.tsx?");
+eval("\n\nfunction _typeof(o) { \"@babel/helpers - typeof\"; return _typeof = \"function\" == typeof Symbol && \"symbol\" == typeof Symbol.iterator ? function (o) { return typeof o; } : function (o) { return o && \"function\" == typeof Symbol && o.constructor === Symbol && o !== Symbol.prototype ? \"symbol\" : typeof o; }, _typeof(o); }\nfunction _classCallCheck(a, n) { if (!(a instanceof n)) throw new TypeError(\"Cannot call a class as a function\"); }\nfunction _defineProperties(e, r) { for (var t = 0; t < r.length; t++) { var o = r[t]; o.enumerable = o.enumerable || !1, o.configurable = !0, \"value\" in o && (o.writable = !0), Object.defineProperty(e, _toPropertyKey(o.key), o); } }\nfunction _createClass(e, r, t) { return r && _defineProperties(e.prototype, r), t && _defineProperties(e, t), Object.defineProperty(e, \"prototype\", { writable: !1 }), e; }\nfunction _toPropertyKey(t) { var i = _toPrimitive(t, \"string\"); return \"symbol\" == _typeof(i) ? i : i + \"\"; }\nfunction _toPrimitive(t, r) { if (\"object\" != _typeof(t) || !t) return t; var e = t[Symbol.toPrimitive]; if (void 0 !== e) { var i = e.call(t, r || \"default\"); if (\"object\" != _typeof(i)) return i; throw new TypeError(\"@@toPrimitive must return a primitive value.\"); } return (\"string\" === r ? String : Number)(t); }\nObject.defineProperty(exports, \"__esModule\", ({\n  value: true\n}));\nvar jsx_runtime_1 = __webpack_require__(/*! react/jsx-runtime */ \"./node_modules/react/jsx-runtime.js\");\nvar DivClass = /*#__PURE__*/function () {\n  function DivClass(text, textColor, backColor) {\n    _classCallCheck(this, DivClass);\n    this.text = text;\n    this.textColor = textColor;\n    this.backColor = backColor;\n  }\n  return _createClass(DivClass, [{\n    key: \"divSet\",\n    value: function divSet(text, textColor, backColor) {\n      return (0, jsx_runtime_1.jsx)(\"div\", {\n        style: {\n          color: textColor,\n          backgroundColor: backColor\n        },\n        children: text\n      });\n    }\n  }]);\n}();\nexports[\"default\"] = DivClass;\n\n//# sourceURL=webpack://reactprac/./src/divClass.tsx?");
 
 /***/ }),
 
