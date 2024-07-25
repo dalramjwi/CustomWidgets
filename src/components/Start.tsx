@@ -3,16 +3,20 @@ import useTypeEffect from "../hooks/useTypeEffect";
 
 const startStyle: { [key: string]: React.CSSProperties } = {
   h1: {
-    fontSize: "3rem",
+    fontSize: "6vw",
     color: "#58FF29",
+    alignSelf: "flex-start",
+    paddingLeft: "5vw",
   },
   h2: {
-    fontSize: "2rem",
+    fontSize: "4vw",
     color: "#58FF29",
+    alignSelf: "flex-start",
+    paddingLeft: "5vw",
   },
   h3: {
-    fontSize: "1.5rem",
-    color: "white",
+    fontSize: "4vw",
+    color: "black",
   },
   public: {
     backgroundColor: "black",
@@ -38,13 +42,9 @@ interface StartProps {
 const Start: React.FC<StartProps> = ({ setMainPage }) => {
   const [state, setState] = useState<number>(0);
   const [name, setName] = useState<string>("");
-  const [displayText, setDisplayText] = useState<string>("");
+  const [displayText, setDisplayText] = useState<string[]>(["", ""]);
 
   useTypeEffect(displayText, setDisplayText, state, setState);
-
-  useEffect(() => {
-    if (state === 1) setDisplayText(textContent.h2);
-  }, [state]);
 
   const handleInputChange = (e: React.ChangeEvent<HTMLInputElement>) => {
     setName(e.target.value);
@@ -60,8 +60,8 @@ const Start: React.FC<StartProps> = ({ setMainPage }) => {
 
   return (
     <div style={startStyle.public}>
-      {state === 0 && <h1 style={startStyle.h1}>{textContent.h1}</h1>}
-      {state === 1 && <h2 style={startStyle.h2}>{displayText}</h2>}
+      <h1 style={startStyle.h1}>{displayText[0]}</h1>
+      <h2 style={startStyle.h2}>{displayText[1]}</h2>
       {state === 2 && (
         <input
           style={startStyle.h3}
