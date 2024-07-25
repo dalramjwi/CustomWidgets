@@ -1,14 +1,20 @@
-import React from "react";
-import DivClass from "./divClass";
-const App = () => {
-  const div1 = new DivClass("Welcome!", "white", "blue");
+import React, { useState } from "react";
+import Start from "./components/Start";
+
+const App: React.FC = () => {
+  const [mainPage, setMainPage] = useState<boolean>(false);
 
   return (
     <div>
-      <h1>Welcome to my React App!</h1>
-      <p>This is a simple React application.</p>
-      {div1.divSet()}
+      {!mainPage ? (
+        <Start setMainPage={setMainPage} />
+      ) : (
+        <div>
+          <h1>Main Page Content</h1>
+        </div>
+      )}
     </div>
   );
 };
+
 export default App;
