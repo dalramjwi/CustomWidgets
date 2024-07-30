@@ -43,8 +43,9 @@ const Start: React.FC<StartProps> = ({ setMainPage }) => {
   const [state, setState] = useState<number>(0);
   const [name, setName] = useState<string>("");
   const [displayText, setDisplayText] = useState<string[]>(["", ""]);
+  const [inputVisible, setInputVisible] = useState<boolean>(false);
 
-  useTypeEffect(displayText, setDisplayText, state, setState);
+  useTypeEffect(displayText, setDisplayText, state, setState, setInputVisible);
 
   const handleInputChange = (e: React.ChangeEvent<HTMLInputElement>) => {
     setName(e.target.value);
@@ -62,7 +63,7 @@ const Start: React.FC<StartProps> = ({ setMainPage }) => {
     <div style={startStyle.public}>
       <h1 style={startStyle.h1}>{displayText[0]}</h1>
       <h2 style={startStyle.h2}>{displayText[1]}</h2>
-      {state === 2 && (
+      {inputVisible && (
         <input
           style={startStyle.h3}
           type="text"

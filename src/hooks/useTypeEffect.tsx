@@ -4,7 +4,8 @@ const useTypeEffect = (
   displayText: string[],
   setDisplayText: React.Dispatch<React.SetStateAction<string[]>>,
   state: number,
-  setState: React.Dispatch<React.SetStateAction<number>>
+  setState: React.Dispatch<React.SetStateAction<number>>,
+  setInputVisible: React.Dispatch<React.SetStateAction<boolean>>
 ) => {
   // 타이핑 효과를 줄 텍스트 객체
   const textContent = {
@@ -41,6 +42,14 @@ const useTypeEffect = (
       return () => clearTimeout(timeoutId);
     }
   }, [displayText, state, setDisplayText, setState]);
+  useEffect(() => {
+    if (state === 2) {
+      const timeoutId = setTimeout(() => {
+        setInputVisible(true);
+      }, 500);
+      return () => clearTimeout(timeoutId);
+    }
+  }, [state, setInputVisible]);
 };
 
 export default useTypeEffect;
