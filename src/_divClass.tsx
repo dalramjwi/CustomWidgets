@@ -14,7 +14,7 @@ class DivClass {
   }
 
   // divSet 메서드를 수정하여 React 컴포넌트처럼 동작하도록 함
-  divSet() {
+  divIISet() {
     const [localText, setLocalText] = useState(this.text);
     const [localTextColor, setLocalTextColor] = useState(this.textColor);
     const [localBackColor, setLocalBackColor] = useState(this.backColor);

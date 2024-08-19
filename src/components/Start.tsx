@@ -51,6 +51,15 @@ const Start: React.FC<StartProps> = ({ setMainPage }) => {
     setName(e.target.value);
   };
 
+  /**
+   * * Function : handleKeyPress
+   * 작성자 : @dalramjwi / 2024-07-31
+   * 편집자 : @dalramjwi / 2024-07-31
+   * Issue :
+   * @function handleKeyPress
+   * @description
+   * @param e: React.KeyboardEvent<HTMLInputElement>
+   */
   const handleKeyPress = (e: React.KeyboardEvent<HTMLInputElement>) => {
     if (e.key === "Enter") {
       textContent.name = name;
