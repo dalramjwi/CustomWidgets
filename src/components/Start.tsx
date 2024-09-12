@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from "react";
 import useTypeEffect from "../hooks/useTypeEffect";
 import startStyle from "./startStyle";
-
+import { handleInputChange, handleKeyPress } from "./handlers";
 const textContent = {
   h1: "Hello",
   h2: "Type Your Name HERE",
@@ -20,27 +20,6 @@ const Start: React.FC<StartProps> = ({ setMainPage }) => {
 
   useTypeEffect(displayText, setDisplayText, state, setState, setInputVisible);
 
-  const handleInputChange = (e: React.ChangeEvent<HTMLInputElement>) => {
-    setName(e.target.value);
-  };
-
-  /**
-   * * Function : handleKeyPress
-   * 작성자 : @dalramjwi / 2024-07-31
-   * 편집자 : @dalramjwi / 2024-07-31
-   * Issue :
-   * @function handleKeyPress
-   * @description
-   * @param e: React.KeyboardEvent<HTMLInputElement>
-   */
-  const handleKeyPress = (e: React.KeyboardEvent<HTMLInputElement>) => {
-    if (e.key === "Enter") {
-      textContent.name = name;
-      setState(4);
-      setMainPage(true); // main 페이지로 이동
-    }
-  };
-
   return (
     <div style={startStyle.public}>
       <h1 style={startStyle.h1}>{displayText[0]}</h1>
@@ -50,8 +29,16 @@ const Start: React.FC<StartProps> = ({ setMainPage }) => {
           style={startStyle.h3}
           type="text"
           value={name}
-          onChange={handleInputChange}
-          onKeyPress={handleKeyPress}
+          onChange={(e) => handleInputChange(e, setName)}
+          onKeyPress={(e) =>
+            handleKeyPress(
+              e,
+              name,
+              () => setMainPage(true),
+              setState,
+              textContent
+            )
+          }
           placeholder="Enter your name"
           aria-label="Name input"
         />
