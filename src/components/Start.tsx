@@ -2,11 +2,7 @@ import React, { useState, useEffect } from "react";
 import useTypeEffect from "../hooks/useTypeEffect";
 import startStyle from "./startStyle";
 import { handleInputChange, handleKeyPress } from "./handlers";
-const textContent = {
-  h1: "Hello",
-  h2: "Type Your Name HERE",
-  name: "",
-};
+import textContent from "./textContent";
 
 interface StartProps {
   setMainPage: (value: boolean) => void;
