@@ -1,20 +1,33 @@
 import React, { useState } from "react";
-import Modal from "./Modal";
 import textContent from "./textContent";
-const Main = () => {
+import Modal from "./Modal";
+
+const Main: React.FC = () => {
   const [isModalOpen, setIsModalOpen] = useState(false);
   const [bgColor, setBgColor] = useState("white");
 
   return (
-    <div style={{ backgroundColor: bgColor }}>
-      <h1>{textContent.name}</h1> {/* textContent의 name 값을 보여주는 부분 */}
-      <div onClick={() => setIsModalOpen(true)}>Click to open modal</div>
+    <div
+      className={`relative min-h-screen`}
+      style={{ backgroundColor: bgColor }}
+    >
+      <h1 className="text-2xl font-bold text-center py-4">
+        {textContent.name}
+      </h1>
+      <div
+        className="cursor-pointer text-center underline"
+        onClick={() => setIsModalOpen(true)}
+      >
+        Click to open modal
+      </div>
       {isModalOpen && (
-        <Modal
-          setBgColor={setBgColor}
-          setIsModalOpen={setIsModalOpen}
-          name={textContent.name}
-        />
+        <div className="fixed inset-0 bg-black bg-opacity-50 flex items-center justify-center">
+          <Modal
+            setBgColor={setBgColor}
+            setIsModalOpen={setIsModalOpen}
+            name={textContent.name}
+          />
+        </div>
       )}
     </div>
   );
