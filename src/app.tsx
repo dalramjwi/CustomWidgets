@@ -1,5 +1,6 @@
 import React, { useState } from "react";
 import Start from "./components/Start";
+import MainPage from "./components/Main";
 
 const App: React.FC = () => {
   const [mainPage, setMainPage] = useState<boolean>(false);
@@ -10,8 +11,7 @@ const App: React.FC = () => {
         <Start setMainPage={setMainPage} />
       ) : (
         <div>
-          <h1>Main Page Content</h1>
-          <div className="text-3xl font-bold underline">hello</div>;
+          <MainPage />
         </div>
       )}
     </div>
