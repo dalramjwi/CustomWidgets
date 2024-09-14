@@ -11,6 +11,7 @@ const App: React.FC = () => {
       ) : (
         <div>
           <h1>Main Page Content</h1>
+          <div className="text-3xl font-bold underline">hello</div>;
         </div>
       )}
     </div>
