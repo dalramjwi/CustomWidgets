@@ -16,7 +16,7 @@ const Start: React.FC<StartProps> = ({ setMainPage }) => {
   useTypeEffect(displayText, setDisplayText, state, setState, setInputVisible);
 
   return (
-    <div className="bg-black h-screen flex flex-col justify-center items-center text-[#58FF29]">
+    <div className="bg-black h-screen flex flex-col justify-center items-center text-[#58FF29] gap-12 font-bold">
       <h1 className="text-[6vw] text-[#58FF29] self-start pl-[5vw]">
         {displayText[0]}
       </h1>
@@ -25,7 +25,7 @@ const Start: React.FC<StartProps> = ({ setMainPage }) => {
       </h2>
       {inputVisible && (
         <input
-          className="text-[4vw] text-black"
+          className="text-[4vw] text-black p-1"
           type="text"
           value={name}
           onChange={(e) => handleInputChange(e, setName)}
