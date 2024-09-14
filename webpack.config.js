@@ -1,4 +1,5 @@
 const path = require("path");
+
 module.exports = {
   entry: "./src/index.tsx",
   output: {
@@ -8,24 +9,17 @@ module.exports = {
   module: {
     rules: [
       {
-        test: /\.css$/,
-        use: ["style-loader", "css-loader"],
+        test: /\.css$/, // CSS 파일 처리
+        use: ["style-loader", "css-loader", "postcss-loader"],
       },
       {
-        test: /\.js|jsx|ts|tsx$/,
-        use: "babel-loader",
-        exclude: /node_modules/,
-      },
-      {
-        test: /\.(ts|tsx)$/,
-        use: "ts-loader",
+        test: /\.(js|jsx|ts|tsx)$/, // JS, JSX, TS, TSX 파일 처리
+        use: "babel-loader", // babel-loader만 사용
         exclude: /node_modules/,
       },
     ],
-    //객체만 받는 배열
-    //test, use, exclude 세가지 키만 받는다.
-    ///\.ts$/ 정규식은 ts인지 확인하는 것
   },
-  resolve: { extensions: [".ts", "js", ".tsx", ".jsx", "css"] },
-  //ts랑 js 쓸거야
+  resolve: {
+    extensions: [".ts", ".js", ".tsx", ".jsx", ".css"], // ts, js, jsx, tsx, css 확장자 처리
+  },
 };
