@@ -1,6 +1,5 @@
-import React, { useState, useEffect } from "react";
+import React, { useState } from "react";
 import useTypeEffect from "../hooks/useTypeEffect";
-import startStyle from "./startStyle";
 import { handleInputChange, handleKeyPress } from "./handlers";
 import textContent from "./textContent";
 
@@ -17,12 +16,16 @@ const Start: React.FC<StartProps> = ({ setMainPage }) => {
   useTypeEffect(displayText, setDisplayText, state, setState, setInputVisible);
 
   return (
-    <div style={startStyle.public}>
-      <h1 style={startStyle.h1}>{displayText[0]}</h1>
-      <h2 style={startStyle.h2}>{displayText[1]}</h2>
+    <div className="bg-black h-screen flex flex-col justify-center items-center text-[#58FF29]">
+      <h1 className="text-[6vw] text-[#58FF29] self-start pl-[5vw]">
+        {displayText[0]}
+      </h1>
+      <h2 className="text-[4vw] text-[#58FF29] self-start pl-[5vw]">
+        {displayText[1]}
+      </h2>
       {inputVisible && (
         <input
-          style={startStyle.h3}
+          className="text-[4vw] text-black"
           type="text"
           value={name}
           onChange={(e) => handleInputChange(e, setName)}
