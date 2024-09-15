@@ -1,10 +1,12 @@
 import React, { useState } from "react";
 import Modal from "./Modal";
+import ItemModal from "./ItemModal";
 import Content from "./interface";
 import { MaintextContent, textContent } from "./textContent";
 
 const Main: React.FC = () => {
   const [isModalOpen, setIsModalOpen] = useState(false);
+  const [isItemModalOpen, setIsItemModalOpen] = useState(false);
   const [content, setContent] = useState<Content>({
     name: textContent.name,
     bgColor: MaintextContent.bgColor,
@@ -15,9 +17,12 @@ const Main: React.FC = () => {
 
   // Grid items 상태 관리
   const [gridItems, setGridItems] = useState(
-    [...Array(content.gridConfig.row * content.gridConfig.col)].map(
-      (_, i) => `Item ${i + 1}`
-    )
+    [...Array(content.gridConfig.row * content.gridConfig.col)].map((_, i) => ({
+      id: i,
+      name: `Item ${i + 1}`,
+      bgColor: content.bgColor,
+      textColor: content.textColor,
+    }))
   );
 
   // 드래그 중인 아이템의 인덱스
@@ -50,10 +55,49 @@ const Main: React.FC = () => {
   React.useEffect(() => {
     setGridItems(
       [...Array(content.gridConfig.row * content.gridConfig.col)].map(
-        (_, i) => `Item ${i + 1}`
+        (_, i) => ({
+          id: i,
+          name: `Item ${i + 1}`,
+          bgColor: content.bgColor,
+          textColor: content.textColor,
+        })
       )
     );
   }, [content.gridConfig]);
+
+  const [selectedItem, setSelectedItem] = useState<{
+    id: number;
+    name: string;
+    bgColor: string;
+    textColor: string;
+  } | null>(null);
+
+  const handleItemClick = (item: {
+    id: number;
+    name: string;
+    bgColor: string;
+    textColor: string;
+  }) => {
+    setSelectedItem(item);
+    setIsItemModalOpen(true);
+  };
+
+  const closeItemModal = () => {
+    setSelectedItem(null);
+    setIsItemModalOpen(false);
+  };
+
+  const handleItemUpdate = (updatedItem: {
+    id: number;
+    name: string;
+    bgColor: string;
+    textColor: string;
+  }) => {
+    setGridItems((prevItems) =>
+      prevItems.map((item) => (item.id === updatedItem.id ? updatedItem : item))
+    );
+    closeItemModal();
+  };
 
   return (
     <div
@@ -78,13 +122,22 @@ const Main: React.FC = () => {
             content={content}
             setContent={setContent}
             setIsModalOpen={setIsModalOpen}
-            showName={true} // 필요에 따라 true/false 설정
-            showGridConfig={true} // 필요에 따라 true/false 설정
+            showName={true}
+            showGridConfig={true}
           />
         </div>
       )}
 
-      {/* Grid Rendering */}
+      {isItemModalOpen && selectedItem && (
+        <div className="fixed inset-0 bg-black bg-opacity-50 flex items-center justify-center">
+          <ItemModal
+            item={selectedItem}
+            onClose={closeItemModal}
+            onUpdate={handleItemUpdate}
+          />
+        </div>
+      )}
+
       <div
         className="grid gap-4 mt-4"
         style={{
@@ -93,22 +146,16 @@ const Main: React.FC = () => {
       >
         {gridItems.map((item, i) => (
           <div
-            key={i}
+            key={item.id}
             className="border border-gray-300 w-32 h-32 flex items-center justify-center"
+            style={{ backgroundColor: item.bgColor, color: item.textColor }}
             draggable
             onDragStart={() => handleDragStart(i)}
             onDragOver={handleDragOver}
             onDrop={() => handleDrop(i)}
+            onClick={() => handleItemClick(item)}
           >
-            {item}
-            {/* 이처럼 반복되어서 제작되는 div 마다 각 div 개인의 상태를 관리할 수 있는 modal 추가  */}
-            {/* <Modal
-              content={content}
-              setContent={setContent}
-              setIsModalOpen={setIsModalOpen}
-              showName={false} // 필요에 따라 true/false 설정
-              showGridConfig={false} // 필요에 따라 true/false 설정
-            /> */}
+            {item.name}
           </div>
         ))}
       </div>
