@@ -1,14 +1,16 @@
 import React, { useState } from "react";
 import Modal from "./Modal";
-import textContent from "./textContent";
+import Content from "./interface";
+import { MaintextContent, textContent } from "./textContent";
 
 const Main: React.FC = () => {
   const [isModalOpen, setIsModalOpen] = useState(false);
-  const [content, setContent] = useState({
+  const [content, setContent] = useState<Content>({
     name: textContent.name,
-    bgColor: "white",
-    isNameHidden: false,
-    gridConfig: { row: 1, col: 1 },
+    bgColor: MaintextContent.bgColor,
+    textColor: MaintextContent.textColor,
+    isNameHidden: MaintextContent.isNameHidden,
+    gridConfig: MaintextContent.gridConfig,
   });
 
   // Grid items 상태 관리
@@ -59,7 +61,9 @@ const Main: React.FC = () => {
       style={{ backgroundColor: content.bgColor }}
     >
       <h1 className="text-2xl font-bold text-center py-4">
-        {!content.isNameHidden && content.name}
+        {!content.isNameHidden && (
+          <span style={{ color: content.textColor }}>{content.name}</span>
+        )}
       </h1>
       <div
         className="cursor-pointer w-10 h-10 bg-blue-500 text-white flex items-center justify-center rounded-full text-lg"
@@ -72,6 +76,8 @@ const Main: React.FC = () => {
             content={content}
             setContent={setContent}
             setIsModalOpen={setIsModalOpen}
+            showName={true} // 필요에 따라 true/false 설정
+            showGridConfig={true} // 필요에 따라 true/false 설정
           />
         </div>
       )}
