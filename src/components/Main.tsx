@@ -57,7 +57,7 @@ const Main: React.FC = () => {
 
   return (
     <div
-      className={`relative min-h-screen`}
+      className="relative min-h-screen"
       style={{ backgroundColor: content.bgColor }}
     >
       <h1 className="text-2xl font-bold text-center py-4">
@@ -68,7 +68,9 @@ const Main: React.FC = () => {
       <div
         className="cursor-pointer w-10 h-10 bg-blue-500 text-white flex items-center justify-center rounded-full text-lg"
         onClick={() => setIsModalOpen(true)}
-      ></div>
+      >
+        <span>⚙️</span>
+      </div>
 
       {isModalOpen && (
         <div className="fixed inset-0 bg-black bg-opacity-50 flex items-center justify-center">
@@ -99,6 +101,14 @@ const Main: React.FC = () => {
             onDrop={() => handleDrop(i)}
           >
             {item}
+            {/* 이처럼 반복되어서 제작되는 div 마다 각 div 개인의 상태를 관리할 수 있는 modal 추가  */}
+            {/* <Modal
+              content={content}
+              setContent={setContent}
+              setIsModalOpen={setIsModalOpen}
+              showName={false} // 필요에 따라 true/false 설정
+              showGridConfig={false} // 필요에 따라 true/false 설정
+            /> */}
           </div>
         ))}
       </div>
