@@ -1,15 +1,57 @@
 import React, { useState } from "react";
 import Modal from "./Modal";
-import textContent from "./textContent"; // textContent를 import
+import textContent from "./textContent";
 
 const Main: React.FC = () => {
   const [isModalOpen, setIsModalOpen] = useState(false);
   const [content, setContent] = useState({
-    name: textContent.name, // textContent의 name 값을 초기값으로 설정
-    bgColor: "white", // 배경색 초기값
-    isNameHidden: false, // 이름 숨김 여부
-    gridConfig: { row: 1, col: 1 }, // grid 설정 초기값
+    name: textContent.name,
+    bgColor: "white",
+    isNameHidden: false,
+    gridConfig: { row: 1, col: 1 },
   });
+
+  // Grid items 상태 관리
+  const [gridItems, setGridItems] = useState(
+    [...Array(content.gridConfig.row * content.gridConfig.col)].map(
+      (_, i) => `Item ${i + 1}`
+    )
+  );
+
+  // 드래그 중인 아이템의 인덱스
+  const [draggedIndex, setDraggedIndex] = useState<number | null>(null);
+
+  // 드래그 시작
+  const handleDragStart = (index: number) => {
+    setDraggedIndex(index);
+  };
+
+  // 드래그 중
+  const handleDragOver = (e: React.DragEvent<HTMLDivElement>) => {
+    e.preventDefault();
+  };
+
+  // 드롭
+  const handleDrop = (index: number) => {
+    if (draggedIndex !== null) {
+      const updatedItems = [...gridItems];
+      [updatedItems[draggedIndex], updatedItems[index]] = [
+        updatedItems[index],
+        updatedItems[draggedIndex],
+      ];
+      setGridItems(updatedItems);
+      setDraggedIndex(null);
+    }
+  };
+
+  // Grid items 상태 업데이트 (content.gridConfig 변경 시 호출)
+  React.useEffect(() => {
+    setGridItems(
+      [...Array(content.gridConfig.row * content.gridConfig.col)].map(
+        (_, i) => `Item ${i + 1}`
+      )
+    );
+  }, [content.gridConfig]);
 
   return (
     <div
@@ -41,13 +83,18 @@ const Main: React.FC = () => {
           gridTemplateColumns: `repeat(${content.gridConfig.col}, 1fr)`,
         }}
       >
-        {[...Array(content.gridConfig.row * content.gridConfig.col)].map(
-          (_, i) => (
-            <div key={i} className="border border-gray-300 w-32 h-32">
-              Grid Item {i + 1}
-            </div>
-          )
-        )}
+        {gridItems.map((item, i) => (
+          <div
+            key={i}
+            className="border border-gray-300 w-32 h-32 flex items-center justify-center"
+            draggable
+            onDragStart={() => handleDragStart(i)}
+            onDragOver={handleDragOver}
+            onDrop={() => handleDrop(i)}
+          >
+            {item}
+          </div>
+        ))}
       </div>
     </div>
   );
