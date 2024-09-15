@@ -1,20 +1,6 @@
 import React, { useState } from "react";
+import { ModalProps } from "./interface";
 
-interface Content {
-  name: string;
-  bgColor: string;
-  textColor: string;
-  isNameHidden: boolean;
-  gridConfig: { row: number; col: number };
-}
-
-interface ModalProps {
-  content: Content;
-  setContent: React.Dispatch<React.SetStateAction<Content>>;
-  setIsModalOpen: React.Dispatch<React.SetStateAction<boolean>>;
-  showName?: boolean;
-  showGridConfig?: boolean;
-}
 const Modal: React.FC<ModalProps> = ({
   content,
   setContent,
@@ -75,7 +61,7 @@ const Modal: React.FC<ModalProps> = ({
             value={newName}
             onChange={(e) => setNewName(e.target.value)}
             className="border rounded w-full py-1 px-2"
-            style={{ color: newTextColor }} // 텍스트 색상 적용
+            style={{ color: newTextColor }}
           />
           <button
             className="mt-2 p-2 bg-blue-500 text-white rounded"
