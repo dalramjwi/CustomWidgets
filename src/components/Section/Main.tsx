@@ -129,7 +129,7 @@ const Main: React.FC = () => {
         )}
       </h1>
       <div
-        className="cursor-pointer w-10 h-10 bg-blue-500 text-white flex items-center justify-center rounded-full text-lg"
+        className="cursor-pointer w-10 h-10 bg-black text-white flex items-center justify-center rounded-full text-lg absolute top-4 right-4"
         onClick={() => {
           if (!hasConfiguredGrid) setIsModalOpen(true); // 설정이 완료되지 않았다면 모달 열기
         }}
