@@ -2,7 +2,7 @@ import React, { useState } from "react";
 import Modal from "./Modal";
 import ItemModal from "./ItemModal";
 import Content from "../interface/interface";
-import { MaintextContent, textContent } from "./textContent";
+import { MaintextContent, textContent } from "../data/textContent";
 
 const Main: React.FC = () => {
   const [isModalOpen, setIsModalOpen] = useState(false);
