@@ -1,7 +1,7 @@
 import React, { useState } from "react";
-import useTypeEffect from "../hooks/useTypeEffect";
-import { handleInputChange, handleKeyPress } from "../utils/handlers";
-import { textContent } from "../data/textContent";
+import { handleInputChange, handleKeyPress } from "../../utils/handlers";
+import { textContent } from "../../data/textContent";
+import useTypeEffect from "../../hooks/useTypeEffect";
 
 interface StartProps {
   setMainPage: (value: boolean) => void;
