@@ -7,6 +7,7 @@ import { MaintextContent, textContent } from "../../data/textContent";
 const Main: React.FC = () => {
   const [isModalOpen, setIsModalOpen] = useState(false);
   const [isItemModalOpen, setIsItemModalOpen] = useState(false);
+  const [hasConfiguredGrid, setHasConfiguredGrid] = useState(false);
   const [content, setContent] = useState<Content>({
     name: textContent.name,
     bgColor: MaintextContent.bgColor,
@@ -53,16 +54,29 @@ const Main: React.FC = () => {
 
   // Grid items 상태 업데이트 (content.gridConfig 변경 시 호출)
   React.useEffect(() => {
-    setGridItems(
-      [...Array(content.gridConfig.row * content.gridConfig.col)].map(
-        (_, i) => ({
+    const totalItems = content.gridConfig.row * content.gridConfig.col;
+
+    // 기존 아이템을 유지하면서 그리드 설정 업데이트
+    const updatedGridItems = [...gridItems];
+
+    // 아이템이 부족할 경우 새 아이템 추가
+    if (updatedGridItems.length < totalItems) {
+      for (let i = updatedGridItems.length; i < totalItems; i++) {
+        updatedGridItems.push({
           id: i,
           name: `Item ${i + 1}`,
           bgColor: content.bgColor,
           textColor: content.textColor,
-        })
-      )
-    );
+        });
+      }
+    }
+
+    // 아이템이 초과할 경우 남는 아이템 제거
+    if (updatedGridItems.length > totalItems) {
+      updatedGridItems.length = totalItems;
+    }
+
+    setGridItems(updatedGridItems);
   }, [content.gridConfig]);
 
   const [selectedItem, setSelectedItem] = useState<{
@@ -99,6 +113,11 @@ const Main: React.FC = () => {
     closeItemModal();
   };
 
+  const handleSave = () => {
+    setHasConfiguredGrid(true); // 설정 완료 후 true로 변경
+    setIsModalOpen(false); // 모달 닫기
+  };
+
   return (
     <div
       className="relative min-h-screen"
@@ -111,7 +130,9 @@ const Main: React.FC = () => {
       </h1>
       <div
         className="cursor-pointer w-10 h-10 bg-blue-500 text-white flex items-center justify-center rounded-full text-lg"
-        onClick={() => setIsModalOpen(true)}
+        onClick={() => {
+          if (!hasConfiguredGrid) setIsModalOpen(true); // 설정이 완료되지 않았다면 모달 열기
+        }}
       >
         <span>⚙️</span>
       </div>
@@ -124,6 +145,7 @@ const Main: React.FC = () => {
             setIsModalOpen={setIsModalOpen}
             showName={true}
             showGridConfig={true}
+            handleSave={handleSave} // 저장 시 설정 완료
           />
         </div>
       )}
