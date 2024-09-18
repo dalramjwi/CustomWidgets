@@ -1,7 +1,7 @@
 import React, { useState } from "react";
 import Modal from "./Modal";
 import ItemModal from "./ItemModal";
-import Content from "../interface/interface";
+import { Content } from "../interface/interface";
 import { MaintextContent, textContent } from "../data/textContent";
 
 const Main: React.FC = () => {

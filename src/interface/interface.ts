@@ -1,4 +1,4 @@
-export default interface Content {
+export interface Content {
   name: string;
   bgColor: string;
   textColor: string;
@@ -11,4 +11,16 @@ export interface ModalProps {
   setIsModalOpen: React.Dispatch<React.SetStateAction<boolean>>;
   showName?: boolean;
   showGridConfig?: boolean;
+}
+export interface Item {
+  id: number;
+  name: string;
+  bgColor: string;
+  textColor: string;
+}
+
+export interface ItemModalProps {
+  item: Item;
+  onClose: () => void;
+  onUpdate: (updatedItem: Item) => void;
 }
