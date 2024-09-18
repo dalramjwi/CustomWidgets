@@ -123,7 +123,7 @@ const Main: React.FC = () => {
       className="relative min-h-screen"
       style={{ backgroundColor: content.bgColor }}
     >
-      <h1 className="text-2xl font-bold text-center py-4">
+      <h1 className="text-4xl font-bold text-center py-4">
         {!content.isNameHidden && (
           <span style={{ color: content.textColor }}>{content.name}</span>
         )}
@@ -161,7 +161,7 @@ const Main: React.FC = () => {
       )}
 
       <div
-        className="grid gap-4 mt-4 justify-items-center"
+        className="grid gap-4 mt-4 justify-items-center px-10"
         style={{
           gridTemplateColumns: `repeat(${content.gridConfig.col}, 1fr)`,
           gap: "0.8vw",
