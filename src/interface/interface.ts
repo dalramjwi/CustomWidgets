@@ -11,6 +11,7 @@ export interface ModalProps {
   setIsModalOpen: React.Dispatch<React.SetStateAction<boolean>>;
   showName?: boolean;
   showGridConfig?: boolean;
+  handleSave: () => void;
 }
 export interface Item {
   id: number;
