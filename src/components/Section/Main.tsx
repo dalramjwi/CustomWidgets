@@ -165,6 +165,7 @@ const Main: React.FC = () => {
         style={{
           gridTemplateColumns: `repeat(${content.gridConfig.col}, 1fr)`,
           gap: "0.8vw",
+          height: "85vh",
         }}
       >
         {gridItems.map((item, i) => (
