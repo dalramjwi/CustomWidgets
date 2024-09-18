@@ -1,6 +1,6 @@
 // src/ItemModal.tsx
 import React, { useState, useEffect } from "react";
-import { ItemModalProps } from "../interface/interface";
+import { ItemModalProps } from "../../interface/interface";
 
 const ItemModal: React.FC<ItemModalProps> = ({ item, onClose, onUpdate }) => {
   const [name, setName] = useState(item.name);

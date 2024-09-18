@@ -1,6 +1,6 @@
 // src/Modal.tsx
 import React, { useState } from "react";
-import { ModalProps } from "../interface/interface";
+import { ModalProps } from "../../interface/interface";
 
 const Modal: React.FC<ModalProps> = ({
   content,
