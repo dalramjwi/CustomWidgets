@@ -161,16 +161,22 @@ const Main: React.FC = () => {
       )}
 
       <div
-        className="grid gap-4 mt-4"
+        className="grid gap-4 mt-4 justify-items-center"
         style={{
           gridTemplateColumns: `repeat(${content.gridConfig.col}, 1fr)`,
+          gap: "0.8vw",
         }}
       >
         {gridItems.map((item, i) => (
           <div
             key={item.id}
             className="border border-gray-300 w-32 h-32 flex items-center justify-center"
-            style={{ backgroundColor: item.bgColor, color: item.textColor }}
+            style={{
+              backgroundColor: item.bgColor,
+              color: item.textColor,
+              height: "100%",
+              width: "100%",
+            }}
             draggable
             onDragStart={() => handleDragStart(i)}
             onDragOver={handleDragOver}
