@@ -1,6 +1,6 @@
 import React, { useState } from "react";
 import useTypeEffect from "../hooks/useTypeEffect";
-import { handleInputChange, handleKeyPress } from "./handlers";
+import { handleInputChange, handleKeyPress } from "../utils/handlers";
 import { textContent } from "../data/textContent";
 
 interface StartProps {
