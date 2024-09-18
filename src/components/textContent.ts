@@ -1,4 +1,4 @@
-import Content from "./interface";
+import Content from "../interface/interface";
 
 const textContent = {
   h1: "Hello",
