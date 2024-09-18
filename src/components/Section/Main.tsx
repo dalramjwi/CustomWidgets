@@ -177,6 +177,7 @@ const Main: React.FC = () => {
               color: item.textColor,
               height: "100%",
               width: "100%",
+              borderRadius: "0.25vw",
             }}
             draggable
             onDragStart={() => handleDragStart(i)}
